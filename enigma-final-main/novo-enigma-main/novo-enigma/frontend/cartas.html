@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ExpoNigma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="cartas.css" />
+  <link rel="icon" type="image/png" href="../IMG/cadeado abrindo.png" />
+</head>
+<body>
+  <main class="container">
+    <h1>Cofre de Acesso</h1>
+    <div class="desbloqueio">
+      <p>Digite o código secreto para acessar seu enigma:</p>
+      <input
+        id="codigo"
+        type="text"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        maxlength="4"
+        placeholder="Ex: 1111,1234..."
+      />
+      <button onclick="desbloquear()">Desbloquear</button>
+      <p id="mensagem" class="mensagem"></p>
+    </div>
+    <p class="sub">Cada código revela um enigma oculto. Qual será o seu?</p>
+  </main>
+
+  <script src="cartas.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  background: radial-gradient(circle at center, #1a1a2e, #0f0f14);
+  color: #e0e0e0b0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #c084fc;
+  text-shadow: 0 0 10px #a855f7;
+}
+
+.sub {
+  margin-top: 20px;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.desbloqueio {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.desbloqueio input,
+.desbloqueio button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 15px;
+}
+
+.desbloqueio input {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.desbloqueio button {
+  font-weight: bold;
+  background: linear-gradient(180deg, #a78bfa, #8b5cf6);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.desbloqueio button:hover {
+  background: linear-gradient(180deg, #8b5cf6, #7c3aed);
+}
+
+.mensagem {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.mensagem.bad {
+  color: #fca5a5;
+}

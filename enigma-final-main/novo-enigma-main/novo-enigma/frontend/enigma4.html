@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ExpoNigma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="enigma.css" />
+  <link rel="icon" type="image/png" href="../IMG/cadeado abrindo.png" />
+</head>
+<body>
+  <main class="container">
+    <h1> Enigma 4</h1>
+    <section class="card">
+      <p class="enunciado">Sou o silêncio após a perda. Um sentimento profundo que todos enfrentam. Quem sou eu?</p>
+
+      <input id="resposta" type="text" placeholder="Digite sua resposta..." />
+
+      <div class="actions">
+        <button class="btn primary" onclick="verificar()">Tentar</button>
+        <button class="btn ghost" onclick="mostrarDica()">Mostrar Dica</button>
+      </div>
+
+      <p id="mensagem" class="mensagem"></p>
+      <p id="dica" class="dica" hidden> Dica: você sente isso quando alguém parte, e o mundo parece parar.</p>
+    </section>
+  </main>
+
+  <script>
+    let tentativas = 3;
+    let acertou = false;
+
+    function normalizar(str) {
+      return str.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z\s]/gi, '')
+        .trim();
+    }
+
+    function verificar() {
+      if (acertou || tentativas <= 0) return;
+
+      const input = document.getElementById('resposta');
+      const msg = document.getElementById('mensagem');
+      const valor = normalizar(input.value);
+
+      if (!valor) {
+        msg.textContent = 'Digite algo antes de tentar.';
+        msg.className = 'mensagem bad';
+        return;
+      }
+
+      if (valor === 'luto') {
+        acertou = true;
+        msg.textContent = ' Você acertou.';
+        msg.className = 'mensagem ok';
+        input.disabled = true;
+        mostrarAcertoVisual();
+        return;
+      }
+
+      tentativas--;
+      msg.textContent = ` Não é isso. Você ainda tem ${tentativas} tentativa${tentativas === 1 ? '' : 's'}.`;
+      msg.className = 'mensagem bad';
+
+      if (tentativas === 0) {
+        input.disabled = true;
+        msg.textContent = ' Você perdeu.';
+        document.body.classList.add('derrota');
+        criarAnimacaoDerrota();
+      }
+    }
+
+    function mostrarDica() {
+      document.getElementById('dica').hidden = false;
+    }
+
+    function criarAnimacaoDerrota() {
+      const tela = document.createElement('div');
+      tela.className = 'overlay-derrota';
+      tela.innerHTML = `<p class="texto-derrota">Você perdeu o enigma</p>`;
+      document.body.appendChild(tela);
+    }
+
+    function mostrarAcertoVisual() {
+      const quantidade = 30;
+      for (let i = 0; i < quantidade; i++) {
+        const confete = document.createElement('div');
+        confete.className = 'confete';
+        confete.style.left = Math.random() * 100 + '%';
+        confete.style.animationDelay = Math.random() * 0.5 + 's';
+        confete.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confete);
+        setTimeout(() => confete.remove(), 2000);
+      }
+    }
+  </script>
+</body>
+</html>
